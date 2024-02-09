@@ -1,0 +1,159 @@
+@import '../../../scss/functions';
+@import '../../../scss/variable';
+
+.flex{
+    @include flex($flexDirection:column);
+    .personal-info-div{
+        margin: 0px 24px 24px 24px;
+        padding: 24px;
+        background-color: $white;
+        display: grid;
+        grid-template-columns: 480fr 450fr;
+        .personal-info{
+            .data{
+                margin-bottom: 40px;
+                .label{
+                    color: $labelcolor;
+                    font-size: 12px;
+                }
+                .text{
+                    width: 100%;
+                    text-align: left;
+                    font-size: 16px;
+                    color: $textcolor;
+                    border: none;
+                    border-bottom: 1px solid $textcolor;
+                    margin-top: 12px;
+                    &:focus{
+                        outline: none;
+                    }
+                }
+                .country_code{
+                    width: 22px;
+                    font-size: 16px;
+                    border: none;
+                    border-bottom: 1px solid $textcolor;
+                    margin-right: 4px;
+                    &:focus{
+                        outline: none;
+                    }
+                }
+                input[type="number"]::-webkit-inner-spin-button,
+                input[type="number"]::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    margin: 0;
+                }
+                .phone-input{
+                    width: 90px;
+                    text-align: left;
+                    font-size: 16px;
+                    color: $textcolor;
+                    border: none;
+                    border-bottom: 1px solid $textcolor;
+                    margin-top: 12px;
+                    &:focus{
+                        outline: none;
+                    }
+                }
+                .role-options{
+                    @include flex($alignItems:center);
+                    margin-top: 16px;
+                    .roles-checkbox{
+                        width: 18px;
+                        height: 18px;
+                        margin-right: 8px;
+                        accent-color: $accentcolor;
+                    }
+                    .role-label{
+                        font-size: 16px;
+                    }
+                }
+            }
+            
+            .upload-resume-div{
+                @include flex($alignItems:center);
+                &:hoover{
+                    @include cursorPointer();
+                }
+                .upload-resume{
+                    margin-right: 8px;
+                }
+                .resume-input{
+                    display: none;
+                }
+                .upload-label{
+                    color: $accentcolor;
+                    font-size: 14px;
+                }
+                .file-name{
+                    height: 100%;
+                    overflow: hidden;
+                    color: $labelcolor;
+                    font-size: 12px;
+                    flex: 1;
+                    border: none;
+                    background-color: $white;
+                }
+            }
+            .sendmeupdates-div{
+                @include flex($alignItems:center);
+                .update-checkbox{
+                    width: 18px;
+                    height: 18px;
+                    margin-right: 8px;
+                    accent-color: $accentcolor;
+                }
+                .updates-label{
+                    font-size: 16px;
+                }
+            }
+        }
+        .photo-upload{
+            margin-left: auto;
+            .flex-div{
+                width: fit-content;
+                @include flex($alignItems:center, $flexDirection:column);
+                .profile-photo{
+                    width: 112px;
+                    height: 112px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    overflow: hidden;
+                }
+                .photo-input-label{
+                    @include cursorPointer();
+                    margin: 16px 0px 9px 0px;
+                    .photo-input{
+                        display: none;
+                    }
+                    .upload-label{
+                        color: $accentcolor;
+                        font-size: 14px;
+                    }
+                }
+                .input-desc{
+                    color: $labelcolor;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+    .next-button{
+        background-color: $buttonbgcolor;
+        color: $buttoncolor;
+        font-size: 14px;
+        padding: 5px 27px;
+        border: none;
+        border-radius: 2px;
+        box-shadow: $buttonshadow;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        &:hover{
+            @include cursorPointer();
+            transform: translateY(-0.2rem);
+        }
+    }
+}

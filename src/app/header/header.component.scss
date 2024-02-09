@@ -1,0 +1,14 @@
+@import '../../scss/functions';
+@import '../../scss/variable';
+
+.header{
+    @include flex();
+    border-bottom: 2px solid $headerBorderColor;
+    background-image: url('../../assets/images/header\ pattern\ image.png');
+    height: 56px;
+    .header-logo{
+        color: $white;
+        font-size: 20px;
+        margin: auto 30px;
+    }
+}

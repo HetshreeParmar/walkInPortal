@@ -1,0 +1,11 @@
+@mixin flex($justifyContent:flex-start, $alignItems:stretch, $flexDirection:row)
+{
+    display: flex;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+    flex-direction: $flexDirection;
+}
+
+@mixin cursorPointer(){
+    cursor: pointer;
+}

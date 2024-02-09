@@ -1,0 +1,272 @@
+<div class="main-header">
+  <div class="component-title">Personal Information</div>
+  <div class="edit-img-container">
+    <img src="../../../assets/icons/edit.png" alt="">
+    <div class="edit-title">edit</div>
+  </div>
+</div>
+<div class="personal-info-div">
+  <div class="photo-upload">
+    @if(userInfo.profilePhotoBaseInfo !== null && userInfo.profilePhotoBaseInfo.length !== 0 &&
+    userInfo.profilePhotoName !== null && userInfo.profilePhotoName.length !== 0){
+      <img [src]="userInfo.profilePhotoBaseInfo" alt="default-profile-photo" class="profile-photo">
+    }
+    @else{
+      <img src="../../../assets/icons/account_circle.svg" alt="">
+    }
+  </div>
+  <div class="single-line">
+    <div class="label">First Name</div>
+    <div class="value">
+      {{userInfo.firstName | titlecase}}
+    </div>
+  </div>
+  <div class="single-line">
+    <div class="label">Last Name</div>
+    <div class="value">
+      {{userInfo.lastName | titlecase}}
+    </div>
+  </div>
+  <div class="single-line">
+      <div class="label">Email</div>
+      <div class="value">
+        {{userInfo.email }}
+      </div>
+  </div>
+  <div class="single-line">
+    <div class="label">Phone number</div>
+    <div class="value">
+      + {{userInfo.countryCode}} {{userInfo.phoneNumber }}
+    </div>
+  </div>
+  <label for="resume-input" class="upload-resume-div">
+    <img src="../../../assets/svgs/Upload_24dp.svg" alt="upload_resume" class="upload-resume">
+    <div class="upload-label">Upload Resume</div>
+    <div>{{userInfo.resumeName}}</div>
+  </label>
+  <div class="single-line">
+    <div class="label">Enter Portfolio URL (if any)</div>
+    <div class="value">
+      @if(userInfo.portfolio.length !== 0){
+      {{userInfo.portfolio }}
+      }
+      @else{ - }
+    </div>
+  </div>
+  <div class="single-line">
+    <div class="label">Preferred Job Roles</div>
+    <div class="preferred-jobRoles">
+      @for(preferredJobRole of preferredJobRoles; track preferredJobRole.id){
+        @if(preferredJobRole.value){
+          <div class="value-jobRole">{{preferredJobRole.JobRoleName | titlecase}}</div>
+        }
+      }
+    </div>
+  </div>
+  <div class="single-line">
+    <div class="label">If You Are Registering Via A Referral, Please Mention Full Name Of The
+      Employee Who Referred You</div>
+    <div class="value">
+      @if(userInfo.referralName.length !== 0){
+        {{userInfo.referralName }}
+      }
+      @else{ - }
+    </div>
+  </div>
+  <div class="single-line sendmeupdates-div">
+    <input type="checkbox" class="sendmeupdates" [checked]="userInfo.jobRelatedUpdates" disabled>
+    <div class="label">Send me job related updates via mail</div>
+  </div>
+</div>
+
+
+<div class="main-header">
+  <div class="component-title">Qualifications</div>
+  <div class="edit-img-container">
+    <img src="../../../assets/icons/edit.png" alt="">
+    <div class="edit-title">edit</div>
+  </div>
+</div>
+<div class="qualification-info-div">
+  <div class="dropdown">
+    <div class="education-title">Educational Qualification</div>
+  </div>
+  <div class="education-info">
+    <div class="single-line">
+      <div class="label">Aggregate Percentage</div>
+      <div class="value">{{userEducationalQualifications.aggregatePercentage}}</div>
+    </div>
+    <div class="single-line">
+      <div class="label">Year Of Passing</div>
+      <div class="value">{{userEducationalQualifications.passingYear}}</div>
+    </div>
+    <div class="double-line">
+      <div class="single-line">
+        <div class="label">Qualification</div>
+        <div class="value">{{userEducationalQualifications.qualification}}</div>
+      </div>
+      <div class="single-line">
+        <div class="label">Stream</div>
+        <div class="value">{{userEducationalQualifications.stream}}</div>
+      </div>
+    </div>
+    <div class="double-line">
+      <div class="single-line">
+        <div class="label">College</div>
+        <div class="value">{{userEducationalQualifications.collegeName}}</div>
+      </div>
+      <div class="single-line">
+        <div class="label">If Others, Please Enter Your College Name</div>
+        <div class="value">{{userEducationalQualifications.otherCollegeName}}</div>
+      </div>
+    </div>
+    <div class="single-line">
+      <div class="label">Where is Your College Located?</div>
+      <div class="value">{{userEducationalQualifications.collegeLocation}}</div>
+    </div>
+  </div>
+</div>
+
+<div class="qualification-info-div">
+  <div class="dropdown">
+    <div class="education-title">Professional Qualification</div>
+  </div>
+  @if(userProfessionalQualificationsVisible.isExperienced){
+    <div class="education-info">
+      <div class="single-line">
+        <div class="label">Years Of Experience</div>
+        <div class="value">{{userExperienced.yearOfExperience}}</div>
+      </div>
+      <div class="single-line">
+        <div class="label">Current CTC</div>
+        <div class="value">{{userExperienced.currentCTC}}</div>
+      </div>
+      <div class="single-line">
+        <div class="label">Expected CTC</div>
+        <div class="value">{{userExperienced.expectedCTC}}</div>
+      </div>
+      <div class="single-line followed">
+        <div class="label">Select All The Technologies You Expertise In</div>
+          <div class="expertise-tech">
+            @for(expertiseTechnology of expertiseTechnologies; track
+              expertiseTechnology.id){ 
+                @if(expertiseTechnology.value){
+                  <div class="expertise-tech-value">{{ expertiseTechnology.technologyName | titlecase }}</div>
+                } 
+            }
+          </div>
+      </div>
+      <div class="single-line">
+        <div class="label">If Others Please Mention</div>
+        <div class="value">
+          @if(userExperienced.e_otherTechnologies !== null &&
+            userExperienced.e_otherTechnologies.length !==0){
+            {{userExperienced.e_otherTechnologies}}
+          }@else{ - }
+        </div>
+      </div>
+      <div class="single-line followed">
+        <div class="label">Select All The Technologies You Familiar In</div>
+          <div class="familier-tech">
+            @for(familiarTechnology of familiarTechnologies; track
+              familiarTechnology.id){ 
+                @if(familiarTechnology.value){
+                  <div class="familier-tech-value">{{ familiarTechnology.technologyName | titlecase }}</div>
+                } 
+            }
+          </div>
+      </div>
+      <div class="single-line">
+        <div class="label">If Others Please Mention</div>
+        <div class="value">
+          @if(userExperienced.f_otherTechnologies !== null &&
+            userExperienced.f_otherTechnologies.length !==0){
+            {{userExperienced.f_otherTechnologies}}
+          }@else{ - }
+        </div>
+      </div>
+      <div class="single-line followed">
+        <div class="label">Are You Currently On Notice Period?</div>
+        <div class="value">
+          @if(userExperienced.isInNoticePeriod) { Yes }
+          @else { No }
+        </div>
+      </div>
+      <div class="double-line">
+        <div class="single-line">
+          <div class="label">If Yes, When Will Your Notice Period End?</div>
+          <div class="value">
+            @if(userExperienced.isInNoticePeriod){
+              {{userExperienced.noticePeriodEnd | date : 'dd-MMM-YYYY'}}
+            }@else { - }
+          </div>
+        </div>
+        <div class="single-line">
+          <div class="label">How Long Is Your Notice Period?(Mention In Months)</div>
+          <div class="value">
+            @if(userExperienced.isInNoticePeriod){
+              {{userExperienced.noticePeriodLength}} Months
+            }@else { - }
+          </div>
+        </div>
+      </div>
+      <div class="single-line">
+        <div class="label">Have You Appeared For Any Test By Zeus In Past 12 Months?</div>
+        <div class="value-other">
+          @if(userExperienced.isAppearedInTestByZeus){Yes}
+          @else { No }
+        </div>
+      </div>
+      <div class="single-line">
+        <div class="label">If Yes, Which Role Did You Apply For?</div>
+        <div class="value">
+          @if(userExperienced.isAppearedInTestByZeus && userExperienced.appearedRoleName.length !== 0){
+            {{userExperienced.appearedRoleName}}
+          }@else{ - }
+        </div>
+      </div>
+    </div>
+  }@else{
+    <div class="education-info">
+      <div class="single-line followed">
+        <div class="label">Select All The Technologies You Are Familiar In</div>
+        <div class="familier-tech">
+          @for(familiarTechnology of familiarTechnologies;track
+          familiarTechnology.id){
+            @if(familiarTechnology.value){
+              <div class="familier-tech-value">{{familiarTechnology.technologyName | titlecase}}</div>
+            }
+          }
+        </div>
+      </div>
+      <div class="single-line">
+        <div class="label">If Others Please Mention</div>
+        <div class="value">
+          @if(userFresher.otherTechnologies !== null &&
+          userFresher.otherTechnologies.length !==0){
+            {{userFresher.otherTechnologies}}
+          }@else{ - }
+        </div>
+      </div>
+      <div class="single-line">
+        <div class="label">Have You Appeared For Any Test By Zeus In Past 12 Months?</div>
+        <div class="value-other">
+          @if(userFresher.isAppearedInTestByZeus){Yes}
+          @else { No }
+        </div>
+      </div>
+      <div class="single-line">
+        <div class="label">If Yes, Which Role Did You Apply For?</div>
+        <div class="value">
+          @if(userFresher.isAppearedInTestByZeus && userFresher.appearedRoleName.length !== 0){
+            {{userFresher.appearedRoleName}}
+          }@else{ - }
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+<div class="step_moving_button">
+  <button class="prev-button" (click)="onSubmit('PREVIOUS')">PREVIOUS</button>
+</div>
