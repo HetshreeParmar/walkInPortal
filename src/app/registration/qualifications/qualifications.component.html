@@ -1,4 +1,4 @@
-<form class="educational-qualification-div" #education ngNativeValidate>
+<form class="educational-qualification-div">
     <div class="dropdown">
         <div class="education-title">Educational Qualification</div>
         <div class="dropdown_img_container"
@@ -14,11 +14,11 @@
         <div class="educational-steps">
             <div class="data-div-single">
                 <label for="aggregatePercentage" class="label">Aggregate Percentage*</label><br>
-                <input type="text" class="text" name="aggregatePercentage" [(ngModel)]="userEducationalQualifications.aggregatePercentage" id="aggregatePercentage" required>
+                <input #aggregatePercentage type="number" class="text" name="aggregatePercentage" [(ngModel)]="userEducationalQualifications.aggregatePercentage" id="aggregatePercentage" required>
             </div>
             <div class="data-div-single">
                 <label for="yearOfPassing" class="label">Year of Passing*</label><br>
-                <select name="yearOfPassing" class="text"[(ngModel)]="userEducationalQualifications.passingYear" required>
+                <select #passingYear name="yearOfPassing" class="text"[(ngModel)]="userEducationalQualifications.passingYear" required>
                     <option value="2020">2020</option>
                     <option value="2021">2021</option>
                     <option value="2022">2022</option>
@@ -28,13 +28,13 @@
             <div class="data-div-double">
                 <div class="data-div-single">
                     <label for="qualification" class="label">Qualification*</label><br>
-                    <select class="text" name="qualification" [(ngModel)]="userEducationalQualifications.qualification" required>
+                    <select #qualification class="text" name="qualification" [(ngModel)]="userEducationalQualifications.qualification" required>
                         <option value="Bachelor in Technology(B.Tech)">Bachelor in Technology(B.Tech)</option>
                     </select>
                 </div>
                 <div class="data-div-single">
                     <label for="stream" class="label">Stream*</label><br>
-                    <select class="text" [(ngModel)]="userEducationalQualifications.stream" name="stream" required>
+                    <select #stream class="text" [(ngModel)]="userEducationalQualifications.stream" name="stream" required>
                         <option value="Computer Enginnering">Computer Enginnering</option>
                         <option value="Information Technology">Information Technology</option>
                     </select>
@@ -43,20 +43,21 @@
             <div class="data-div-double">
                 <div class="data-div-single">
                     <label for="college" class="label">College*</label><br>
-                    <select class="text" name="college" [(ngModel)]="userEducationalQualifications.collegeName" required>
+                    <select #collegeName class="text" name="college" [(ngModel)]="userEducationalQualifications.collegeName" required>
                         <option value="Dharmsinh Desai University">Dharmsinh Desai University</option>
                         <option value="Birla Vishwakarma MahaVidhyalaya">Birla Vishwakarma MahaVidhyalaya</option>
                         <option value="Nirma University">Nirma University</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
                 <div class="data-div-single">
                     <label for="otherCollegeName" class="label">If other, please enter your college name</label><br>
-                    <input type="text" name="otherCollegeName" [(ngModel)]="userEducationalQualifications.otherCollageName" class="text">
+                    <input #otherCollegeName type="text" name="otherCollegeName" [(ngModel)]="userEducationalQualifications.otherCollageName" class="text">
                 </div>
             </div>
             <div class="data-div-single">
                 <label for="collegeLocation" class="label">Where is your college located?*</label><br>
-                <input type="text" name="collegeLocation" class="text" [(ngModel)]="userEducationalQualifications.collegeLocation" required>
+                <input #collegeLocation type="text" name="collegeLocation" class="text" [(ngModel)]="userEducationalQualifications.collegeLocation" required>
             </div>
         </div>
     </div>
@@ -94,52 +95,54 @@
         <form class="experience-info" [hidden]="isProfessionalQualificationsVisible" ngNativeValidate>
             <div class="data-div-single">
                 <label for="yearOfExperience" class="label">Years of Experience*</label><br>
-                <input type="number" name="yearOfExperience" id="yearOfExperience" [(ngModel)]="userExperienced.yearOfExperience" class="text" required>
+                <input #yearsOfExperience type="number" name="yearOfExperience" id="yearOfExperience" [(ngModel)]="userExperienced.yearOfExperience" class="text" required>
             </div>
             <div class="data-div-single">
                 <label for="current_CTC" class="label">Current CTC* (in Rupees)</label><br>
-                <input type="text" name="current_CTC" id="current_CTC" [(ngModel)]="userExperienced.currentCTC" class="text" required>
+                <input #currentCTC type="text" name="current_CTC" id="current_CTC" [(ngModel)]="userExperienced.currentCTC" class="text" required>
             </div>
             <div class="data-div-single">
                 <label for="expected_CTC" class="label">Expected CTC* (in Rupees)</label><br>
-                <input type="text" name="expected_CTC" id="expected_CTC" [(ngModel)]="userExperienced.expectedCTC" class="text" required>
+                <input #expectedCTC type="text" name="expected_CTC" id="expected_CTC" [(ngModel)]="userExperienced.expectedCTC" class="text" required>
             </div>
             <div class="data-div-tech-expert">
                 <label class="label" for="tech_expertise">Select All The Technologies You Expertise in*</label>
-                @for(expertiseTechnology of expertiseTechnologies; track
-                    expertiseTechnology.id){
+                @for(technology of expertiseTechnologies.technologyNames; track
+                    $index){
                     <div class="role-options">
                         <input
+                        #expertiseTechnologiesHash
                         type="checkbox"
-                        [name]="'e_' + expertiseTechnology.technologyName"
-                        [id]="'e_' + expertiseTechnology.technologyName"
-                        [(ngModel)]="expertiseTechnology.value"
+                        [name]="'e_' + technology"
+                        [id]="'e_' + technology"
+                        [(ngModel)]="expertiseTechnologies.values[$index]"
                         class="roles-checkbox"
                         />
-                        <label class="role-label" [for]="'e_' + expertiseTechnology.technologyName">{{
-                        expertiseTechnology.technologyName
+                        <label class="role-label" [for]="'e_' + technology">{{
+                        technology
                         }}</label>
                     </div>
                 }
             </div>
             <div class="data-div-single">
                 <label for="e_otherTechnologies" class="label">If Others, Please Mention</label><br>
-                <input type="text" name="e_otherTechnologies" id="e_otherTechnologies" [(ngModel)]="userExperienced.e_otherTechnologies" class="text">
+                <input #otherexpertiseTechnologiesHash type="text" name="e_otherTechnologies" id="e_otherTechnologies" [(ngModel)]="userExperienced.e_otherTechnologies" class="text">
             </div>
             <div class="data-div-tech-familiar">
                 <label class="label" for="tech_expertise">Select All The Technologies You Familier in*</label>
-                @for(familiarTechnologie of familiarTechnologies; track
-                familiarTechnologie.id){
+                @for(technology of familiarTechnologies.technologyNames; track
+                $index){
                 <div class="role-options">
                   <input
+                    
                     type="checkbox"
                     class="roles-checkbox"
-                    [name]="'f_' + familiarTechnologie.technologyName"
-                    [id]="'f_' + familiarTechnologie.technologyName"
-                    [(ngModel)]="familiarTechnologie.value"
+                    [name]="'f_' + technology"
+                    [id]="'f_' + technology"
+                    [(ngModel)]="familiarTechnologies.values[$index]"
                   />
-                  <label class="role-label" [for]="'f_' + familiarTechnologie.technologyName">{{
-                    familiarTechnologie.technologyName
+                  <label class="role-label" [for]="'f_' + technology">{{
+                    technology
                   }}</label>
                 </div>
                 }
@@ -156,7 +159,7 @@
             <div class="data-div-radio">
                 <label for="isNoticePeriod" class="label">Are You Currently On Notice Period?*</label>
                 <div class="radio-container" required>
-                    <input type="radio" name="isInNoticePeriod" [value]="true" [(ngModel)]="userExperienced.isInNoticePeriod">
+                    <input #isInNoticePeriod type="radio" name="isInNoticePeriod" [value]="true" [(ngModel)]="userExperienced.isInNoticePeriod">
                     <label class="label-radio" for="isInNoticePeriod">Yes</label>
                     <input type="radio" name="isInNoticePeriod" [value]="false" [(ngModel)]="userExperienced.isInNoticePeriod">
                     <label class="label-radio" for="isInNoticePeriod">No</label>
@@ -165,11 +168,12 @@
             <div class="data-div-double">
                 <div class="data-div-single">
                     <label for="noticePeriodEnd" class="label">If Yes, When Will Your Notice Period End?</label><br>
-                    <input type="date" name="noticePeriodEnd" id="" [(ngModel)]="userExperienced.noticePeriodEnd">
+                    <input #noticePeriodEnd type="date" name="noticePeriodEnd" id="" [(ngModel)]="userExperienced.noticePeriodEnd">
                 </div>
                 <div class="data-div-single">
                     <label class="label" for="noticePeriodLength">How Long Is Your Notice Period?*(Mention In Months)</label><br>
                     <select
+                        #noticePeriodLength
                         name="noticePeriodLength"
                         id="noticePeriodLength"
                         [(ngModel)]="userExperienced.noticePeriodLength"
@@ -191,7 +195,7 @@
             </div>
             <div class="data-div-single">
                 <label for="appearedRoleName" class="label">If Yes, Which Role Did You Applied For?*</label><br>
-                <input type="text" name="appearedRoleName" id="appearedRoleName" [(ngModel)]="userExperienced.appearedRoleName" class="text other">
+                <input #exp_appearedRoleName type="text" name="appearedRoleName" id="appearedRoleName" [(ngModel)]="userExperienced.appearedRoleName" class="text other">
             </div>
         </form>
     }
@@ -204,17 +208,17 @@
                 >Select All The Technologies You Are Familiar In</span
                 >
         
-                @for(familiarTechnologie of familiarTechnologies; track
-                familiarTechnologie.id){
+                @for(technology of familiarTechnologies.technologyNames; track
+                $index){
                 <div class="role-options">
                 <input
                     type="checkbox"
-                    [id]="familiarTechnologie.technologyName"
-                    [(ngModel)]="familiarTechnologie.value"
+                    [id]="'f_' + technology"
+                    [(ngModel)]="familiarTechnologies.values[$index]"
                     class="roles-checkbox"
                 />
-                <label class="role-label" [for]="familiarTechnologie.technologyName">{{
-                    familiarTechnologie.technologyName
+                <label class="role-label" [for]="'f_'+ technology">{{
+                    technology
                 }}</label>
                 </div>
                 }
@@ -232,7 +236,7 @@
             <div class="data-div-radio">
                 <label class="label" for="test_appearence">Have You Appeared For Any Test By Zeus In Past 12 Months?*</label><br>
                 <div class="radio-container">
-                    <input type="radio" name="isAppearedInTestByZeus" id="isAppearedInTestByZeus_yes" [value]="true" [(ngModel)]="userFresher.isAppearedInTestByZeus">
+                    <input #isAppearedInTestByZeus type="radio" name="isAppearedInTestByZeus" id="isAppearedInTestByZeus_yes" [value]="true" [(ngModel)]="userFresher.isAppearedInTestByZeus">
                     <label class="label-radio" for="isAppearedInTestByZeus">Yes</label>
                     <input type="radio" name="isAppearedInTestByZeus" id="isAppearedInTestByZeus_no" [value]="false" [(ngModel)]="userFresher.isAppearedInTestByZeus">
                     <label class="label-radio" for="isAppearedInTestByZeus">No</label>
@@ -240,7 +244,7 @@
             </div>
             <div class="data-div-single">
                 <label for="appearedRoleName" class="label">If Yes, Which Role Did You Applied For?*</label><br>
-                <input type="text" name="appearedRoleName" id="appearedRoleName" [(ngModel)]="userFresher.appearedRoleName" class="text other">
+                <input #fre_appearedRoleName type="text" name="appearedRoleName" id="appearedRoleName" [(ngModel)]="userFresher.appearedRoleName" class="text other">
             </div>
         </div>
     }
@@ -254,7 +258,7 @@
     >
       PREVIOUS
     </button>
-    <button class="next-button" (click)="(education.checkValidity() ) ? onSubmit('NEXT') : null" type="submit">
+    <button class="next-button" (click)="onSubmit('NEXT')" type="submit">
       NEXT
     </button>
 </div>

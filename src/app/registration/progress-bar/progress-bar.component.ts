@@ -5,11 +5,12 @@ import { IJobRoles, IPersonalInformation, ITechnologies, IUserEducationalQualifi
 import { PersonalInfoComponent } from '../personal-info/personal-info.component';
 import { ReviewProceedComponent } from '../review-proceed/review-proceed.component';
 import { QualificationsComponent } from '../qualifications/qualifications.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-progress-bar',
   standalone: true,
-  imports: [CommonModule, PersonalInfoComponent, QualificationsComponent, ReviewProceedComponent],
+  imports: [CommonModule, PersonalInfoComponent, QualificationsComponent, ReviewProceedComponent, RouterLink],
   templateUrl: './progress-bar.component.html',
   styleUrl: './progress-bar.component.scss'
 })
@@ -26,6 +27,10 @@ export class ProgressBarComponent implements OnInit{
       this.enableRegistration(true);
     }
     this.stepCount--;
+  }
+  movePreviousPreviousStep(){
+    this.enableRegistration(true);
+    this.stepCount-=2;
   }
   moveNextStep(){
     if(this.stepCount === 2){
@@ -59,79 +64,87 @@ export class ProgressBarComponent implements OnInit{
     resumeName: null
   };
 
-  preferredJobRoles: IJobRoles[] = [
-    {
-      id: 1,
-      JobRoleName: 'instructional Designer',
-      value: false,
-    },
-    {
-      id: 2,
-      JobRoleName: 'software Engineer',
-      value: false,
-    },
-    {
-      id: 3,
-      JobRoleName: 'software Quality Engineer',
-      value: false,
-    },
-  ];
+  // preferredJobRoles: IJobRoles = {
+  //   JobRoleNames: [
+  //     'instructional Designer',
+  //     'software Engineer',
+  //     'software Quality Engineer',
+  //   ],
+  //   values: [false, false, false],
+  // };
+  preferredJobRoles: IJobRoles = {
+    JobRoleNames: [
+      'instructional Designer',
+      'software Engineer',
+      'software Quality Engineer',
+    ],
+    values: [false, false, false],
+  };
+    
 
-  familiarTechnologies: ITechnologies[] = [
-    {
-      id: 1,
-      technologyName: 'Javascript',
-      value: false,
-    },
-    {
-      id: 2,
-      technologyName: 'Angular JS',
-      value: false,
-    },
-    {
-      id: 3,
-      technologyName: 'React',
-      value: false,
-    },
-    {
-      id: 4,
-      technologyName: 'Node JS',
-      value: false,
-    },
-    {
-      id: 5,
-      technologyName: 'Others',
-      value: false,
-    },
-  ];
+  // familiarTechnologies: ITechnologies[] = [
+  //   {
+  //     id: 1,
+  //     technologyName: 'Javascript',
+  //     value: false,
+  //   },
+  //   {
+  //     id: 2,
+  //     technologyName: 'Angular JS',
+  //     value: false,
+  //   },
+  //   {
+  //     id: 3,
+  //     technologyName: 'React',
+  //     value: false,
+  //   },
+  //   {
+  //     id: 4,
+  //     technologyName: 'Node JS',
+  //     value: false,
+  //   },
+  //   {
+  //     id: 5,
+  //     technologyName: 'Others',
+  //     value: false,
+  //   },
+  // ];
+  familiarTechnologies: ITechnologies = {
+    technologyNames: ['Javascript', 'Angular JS', 'React', 'Node JS', 'Others'],
+    values: [false, false, false, false, false],
+  };
 
-  expertiseTechnologies: ITechnologies[] = [
-    {
-      id: 1,
-      technologyName: 'Javascript',
-      value: false,
-    },
-    {
-      id: 2,
-      technologyName: 'Angular JS',
-      value: false,
-    },
-    {
-      id: 3,
-      technologyName: 'React',
-      value: false,
-    },
-    {
-      id: 4,
-      technologyName: 'Node JS',
-      value: false,
-    },
-    {
-      id: 5,
-      technologyName: 'Others',
-      value: false,
-    },
-  ];
+  // expertiseTechnologies: ITechnologies[] = [
+  //   {
+  //     id: 1,
+  //     technologyName: 'Javascript',
+  //     value: false,
+  //   },
+  //   {
+  //     id: 2,
+  //     technologyName: 'Angular JS',
+  //     value: false,
+  //   },
+  //   {
+  //     id: 3,
+  //     technologyName: 'React',
+  //     value: false,
+  //   },
+  //   {
+  //     id: 4,
+  //     technologyName: 'Node JS',
+  //     value: false,
+  //   },
+  //   {
+  //     id: 5,
+  //     technologyName: 'Others',
+  //     value: false,
+  //   },
+  // ];
+  expertiseTechnologies: ITechnologies = {
+    technologyNames: ['Javascript', 'Angular JS', 'React', 'Node JS', 'Others'],
+    values: [false, false, false, false, false],
+  };
 
   //   qualificationsInformation: any = {
   //     aggregatePercentage: '',
@@ -221,9 +234,21 @@ export class ProgressBarComponent implements OnInit{
     }
   }
   reviewPricessSubmited(val: any) {
+    this.userPersonalInformation = val.userInfo;
+    this.preferredJobRoles = val.preferredJobRoles;
+    this.familiarTechnologies = val.familiarTechnologies;
+    this.expertiseTechnologies = val.expertiseTechnologies;
+    this.userEducationalQualifications = val.userEducationalQualifications;
+    this.userProfessionalQualificationsVisible =
+      val.userProfessionalQualificationsVisible;
+    this.userFresher = val.userFresher;
+    this.userExperienced = val.userExperienced;
     if (val.direction === 'PREVIOUS') {
       window.scrollTo(0, 0);
       this.movePreviousStep();
+    }else if(val.direction === 'PREVIOUSP'){
+      window.scrollTo(0,0);
+      this.movePreviousPreviousStep();
     }
   }
 }

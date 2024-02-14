@@ -1,6 +1,6 @@
 <div class="main-header">
   <div class="component-title">Personal Information</div>
-  <div class="edit-img-container">
+  <div class="edit-img-container" (click)="onSubmit('PREVIOUSP')">
     <img src="../../../assets/icons/edit.png" alt="">
     <div class="edit-title">edit</div>
   </div>
@@ -12,7 +12,7 @@
       <img [src]="userInfo.profilePhotoBaseInfo" alt="default-profile-photo" class="profile-photo">
     }
     @else{
-      <img src="../../../assets/icons/account_circle.svg" alt="">
+      <img src="../../../assets/images/default-profile-photo.png" alt="">
     }
   </div>
   <div class="single-line">
@@ -56,9 +56,9 @@
   <div class="single-line">
     <div class="label">Preferred Job Roles</div>
     <div class="preferred-jobRoles">
-      @for(preferredJobRole of preferredJobRoles; track preferredJobRole.id){
-        @if(preferredJobRole.value){
-          <div class="value-jobRole">{{preferredJobRole.JobRoleName | titlecase}}</div>
+      @for(jobRoleaName of preferredJobRoles.JobRoleNames; track $index){
+        @if(preferredJobRoles.values[$index]){
+          <div class="value-jobRole">{{preferredJobRoles.JobRoleNames[$index] | titlecase}}</div>
         }
       }
     </div>
@@ -82,7 +82,7 @@
 
 <div class="main-header">
   <div class="component-title">Qualifications</div>
-  <div class="edit-img-container">
+  <div class="edit-img-container" (click)="onSubmit('PREVIOUS')">
     <img src="../../../assets/icons/edit.png" alt="">
     <div class="edit-title">edit</div>
   </div>
@@ -148,10 +148,10 @@
       <div class="single-line followed">
         <div class="label">Select All The Technologies You Expertise In</div>
           <div class="expertise-tech">
-            @for(expertiseTechnology of expertiseTechnologies; track
-              expertiseTechnology.id){ 
-                @if(expertiseTechnology.value){
-                  <div class="expertise-tech-value">{{ expertiseTechnology.technologyName | titlecase }}</div>
+            @for(technology of expertiseTechnologies.technologyNames; track
+              $index){ 
+                @if(expertiseTechnologies.values[$index]){
+                  <div class="expertise-tech-value">{{ technology | titlecase }}</div>
                 } 
             }
           </div>
@@ -168,10 +168,10 @@
       <div class="single-line followed">
         <div class="label">Select All The Technologies You Familiar In</div>
           <div class="familier-tech">
-            @for(familiarTechnology of familiarTechnologies; track
-              familiarTechnology.id){ 
-                @if(familiarTechnology.value){
-                  <div class="familier-tech-value">{{ familiarTechnology.technologyName | titlecase }}</div>
+            @for(technology of familiarTechnologies.technologyNames; track
+              $index){ 
+                @if(familiarTechnologies.values[$index]){
+                  <div class="familier-tech-value">{{ technology | titlecase }}</div>
                 } 
             }
           </div>
@@ -231,10 +231,10 @@
       <div class="single-line followed">
         <div class="label">Select All The Technologies You Are Familiar In</div>
         <div class="familier-tech">
-          @for(familiarTechnology of familiarTechnologies;track
-          familiarTechnology.id){
-            @if(familiarTechnology.value){
-              <div class="familier-tech-value">{{familiarTechnology.technologyName | titlecase}}</div>
+          @for(technology of familiarTechnologies.technologyNames;track
+          $index){
+            @if(familiarTechnologies.values[$index]){
+              <div class="familier-tech-value">{{technology | titlecase}}</div>
             }
           }
         </div>

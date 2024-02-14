@@ -14,13 +14,14 @@ export class ReviewProceedComponent {
   objectKeys = Object.keys;
 
   userInfo: any = {};
-  preferredJobRoles: IJobRoles[] = [];
+  preferredJobRoles!: IJobRoles;
   userEducationalQualifications: any = {};
   userProfessionalQualificationsVisible: any = {};
   userFresher: any = {};
   userExperienced: any = {};
-  familiarTechnologies: ITechnologies[] = [];
-  expertiseTechnologies: ITechnologies[] = [];
+  familiarTechnologies!: ITechnologies;
+  expertiseTechnologies!: ITechnologies;
+
 
   @Input() set prevUserInfo(val: any) {
     this.userInfo = val.userInfo;
@@ -38,6 +39,15 @@ export class ReviewProceedComponent {
 
   onSubmit(direction: string) {
     this.reviewPricessSubmited.emit({
+      userInfo: this.userInfo,
+      preferredJobRoles: this.preferredJobRoles,
+      userEducationalQualifications: this.userEducationalQualifications,
+      userProfessionalQualificationsVisible:
+        this.userProfessionalQualificationsVisible,
+      userFresher: this.userFresher,
+      userExperienced: this.userExperienced,
+      familiarTechnologies: this.familiarTechnologies,
+      expertiseTechnologies: this.expertiseTechnologies,
       direction,
     });
   }

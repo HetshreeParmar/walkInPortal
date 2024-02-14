@@ -1,3 +1,5 @@
+import { BehaviorSubject } from "rxjs";
+
 export interface IPersonalInformation {
   profilePhotoBaseInfo: string | null;
   profilePhotoName: string | null;
@@ -14,14 +16,12 @@ export interface IPersonalInformation {
 }
 
 export interface IJobRoles {
-  id: number;
-  JobRoleName: string;
-  value: boolean;
+  JobRoleNames: string[];
+  values: boolean[];
 }
 export interface ITechnologies {
-  id: number;
-  technologyName: string;
-  value: boolean;
+  technologyNames: string[];
+  values: boolean[];
 }
 
 export interface IUserEducationalQualifications {
@@ -51,4 +51,38 @@ export interface IUserExperiences {
   noticePeriodLength: number | null;
   isAppearedInTestByZeus: boolean | null;
   appearedRoleName: string | null;
+}
+
+export interface IUserLogin {
+  isUserLogedIn: BehaviorSubject<boolean>;
+}
+
+export interface IJobs {
+  id: number;
+  title: string;
+  sDate: Date;
+  eDate: Date;
+  location: string;
+  job_roles: string[];
+  isExpiring: boolean;
+  isExpiringTitle: string;
+  isExtraRoles: boolean;
+  isExtraRolesTitle: string | null;
+  timeSlots: string[];
+  packages: number[];
+  roleDescriptions: string[];
+  requirements: string[];
+  generalInstructions: string;
+  instructionsForTheExam: string;
+  minimumSystemRequirements: string;
+  process: string;
+  address: {
+    name: string;
+    addressLine1: string;
+    area: string;
+    city: string;
+    pincode: string;
+    phone: string;
+  };
+  thingsToRemember: string;
 }

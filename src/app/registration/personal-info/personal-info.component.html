@@ -1,27 +1,27 @@
-<form class="personal-info-form flex" #form ngNativeValidate >
+<form class="personal-info-form flex">
     <div class="personal-info-div">
         <div class="personal-info">
             <div class="data">
                 <label for="firstName" class="label">FirstName*</label>
                 <br/>
-                <input name="firstName" id="firstName" [(ngModel)]="userInfo.firstName" type="text" class="text" placeholder="Enter First Name" required>
+                <input #firstName name="firstName" id="firstName" [(ngModel)]="userInfo.firstName" type="text" class="text" placeholder="Enter First Name" required>
             </div>
             <div class="data">
                 <label for="lastName" class="label">LastName*</label>
                 <br/>
-                <input name="lastName" id="lastName" [(ngModel)]="userInfo.lastName" type="text" class="text" placeholder="Enter Last Name" required>
+                <input #lastName name="lastName" id="lastName" [(ngModel)]="userInfo.lastName" type="text" class="text" placeholder="Enter Last Name" required>
             </div>
             <div class="data">
                 <label for="email" class="label">Email*</label>
                 <br/>
-                <input name="email" id="email" type="text" [(ngModel)]="userInfo.email" class="text" placeholder="Enter Email" required>
+                <input #email name="email" id="email" type="text" [(ngModel)]="userInfo.email" class="text" placeholder="Enter Email" required>
             </div>
             <div class="data">
                 <label for="phoneNumber" class="label">Phone Number*</label>
                 <br/>
                 <span>+</span>
-                <input type="number" name="country_code" id="country_code" [(ngModel)]="userInfo.countryCode" class="country_code">
-                <input id="phoneNumber" name="phoneNumber" [(ngModel)]="userInfo.phoneNumber" type="number" class="phone-input"  required>
+                <input #countryCode type="number" name="country_code" id="country_code" [(ngModel)]="userInfo.countryCode" class="country_code">
+                <input #phoneNumber id="phoneNumber" name="phoneNumber" [(ngModel)]="userInfo.phoneNumber" type="number" class="phone-input" minlength="10" required>
             </div>
             <label for="resume-input" (change)="uploadResume($event)" class="data upload-resume-div">
                 <img src="../../../assets/svgs/Upload_24dp.svg" alt="upload_resume" class="upload-resume">
@@ -33,38 +33,26 @@
                 <label for="portfolio_url" class="label">Enter Prortfolio URL (if any)</label>
                 <input type="text" name="portfolio_url" [(ngModel)]="userInfo.portfolio" class="text" placeholder="Enter URL">
             </div>
-            <div class="data">
-                <label for="role" class="label">Prefereed Job Roles*</label>
-                @for(preferredJobRole of preferredJobRoles; track preferredJobRole.id){
+             <div class="data">
+                <label for="role" class="label">Prefereed Job Roles*</label>               
+                @for(jobRoleName of preferredJobRoles.JobRoleNames; track $index){
                     <div class="role-options">
-                      <input
-                        [id]="preferredJobRole.JobRoleName"
+                       <input
+                        #preferredJobRolescheckbox
+                        [id]="preferredJobRoles.JobRoleNames[$index]"
                         type="checkbox"
-                        [(ngModel)]="preferredJobRole.value"
-                        name="preferredJobRole.value"
+                        [(ngModel)]="preferredJobRoles.values[$index]"
+                        [name]="preferredJobRoles.JobRoleNames[$index]"
                         class="roles-checkbox"
                       />
                       <label
-                        [for]="preferredJobRole.JobRoleName"
+                        [for]="preferredJobRoles.JobRoleNames[$index]"
                         class="role-label"
-                        for="instructionalDesigner"
-                        >{{ preferredJobRole.JobRoleName }}</label
-                      >
+                        >{{ preferredJobRoles.JobRoleNames[$index] }}</label
+                      > 
                     </div>
                     }
-                <!-- <div class="role-options">
-                    <input name="instructionalDesigner" [(ngModel)]="userInfo.instructionalDesigner" type="checkbox" id="instructionalDesigner" class="roles-checkbox">
-                    <label for="instructionalDesigner" class="role-label">Instructional Designer</label><br>
-                </div> -->
-                <!-- <div class="role-options">
-                    <input name="softwareEngineer" [(ngModel)]="userInfo.softwareEngineer" type="checkbox" id="softwareEngineer" class="roles-checkbox">
-                    <label for="softwareEngineer" class="role-label">Software Engineer</label><br>
-                </div> -->
-                <!-- <div class="role-options">
-                    <input type="checkbox" name="softwareQualityEngineer" [(ngModel)]="userInfo.softwareQualityEngineer" id="softwareQualityEngineer" class="roles-checkbox">
-                    <label for="softwareQualityEngineer" class="role-label">Software Quality Engineer</label>
-                </div> -->
-            </div>
+            </div> 
             <div class="data">
                 <label for="referral" class="label">If You Are Registering Via A Refferal, Please Mention Full Name Of The Employee Who Reffered You</label>
                 <input type="text" class="text">
@@ -87,5 +75,5 @@
         </div>
     </div>
     
-    <button class="next-button" (click)="form.checkValidity() ? onSubmit() : null">NEXT</button>
+    <button class="next-button" (click)="onSubmit()">NEXT</button>
 </form>

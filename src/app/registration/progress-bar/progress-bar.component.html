@@ -1,8 +1,8 @@
 <div class="reg-header">
-    <img src="../../../assets/svgs/back.svg" alt="back_arrow">
+    <img [routerLink]="['/']" src="../../../assets/svgs/back.svg" alt="back_arrow">
     <div class="reg-title">Create an account</div>
-    <button class="reg-button cancel-button active">CANCEL</button>
-    <button class="reg-button create-button" [ngClass]="{disabled: isDisabled}">CREATE</button>
+    <button [routerLink]="['/']" class="reg-button cancel-button active">CANCEL</button>
+    <button class="reg-button create-button" [ngClass]="{disabled: isDisabled}" [routerLink]="['/']">CREATE</button>
 </div>
 
 <div class="reg-progress-bar">

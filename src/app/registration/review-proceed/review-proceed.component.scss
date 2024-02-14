@@ -9,6 +9,7 @@
     }
     .edit-img-container{
         @include flex();
+        @include cursorPointer();
         color: $accentcolor;
         img{
             height: 18px;

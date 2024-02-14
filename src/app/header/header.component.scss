@@ -2,13 +2,29 @@
 @import '../../scss/variable';
 
 .header{
-    @include flex();
+    @include flex(space-between, center);
+    background: $buttoncolor;
     border-bottom: 2px solid $headerBorderColor;
-    background-image: url('../../assets/images/header\ pattern\ image.png');
+    background-image: url('../../assets/header\ pattern\ svg.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: overlay;
     height: 56px;
     .header-logo{
         color: $white;
         font-size: 20px;
-        margin: auto 30px;
+        margin: auto 15px;
+        @include cursorPointer();
+    }
+    .user-login-container{
+        border-radius: 50%;
+        @include flex(center, center);
+        height: 40px;
+        width: 40px;
+        border: 2px solid $accentcolor;
+        color: $white;
+        margin-right: 16px;
+        font-size: 16px;
+        background-color: $regBgcolor;
     }
 }
