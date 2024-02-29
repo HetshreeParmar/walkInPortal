@@ -1,0 +1,128 @@
+@import '../../scss/functions';
+@import '../../scss/variable';
+input::placeholder {
+    font-size: 1.2em;
+    overflow: visible;
+}
+
+.login-container {
+    min-height: 91vh;
+    @include flex(center, center, column);
+    position: relative;
+    .login-title {
+        text-align: center;
+        font-size: 24px;
+    }
+    .login-form {
+        background: $white;
+        padding: 24px 32px;
+        width: 424px;
+        border-top: 4px solid $headerBorderColor;
+        border-radius: 2px 2px 0px 0px;
+        .input {
+            margin-top: 32px;
+            @include flex($flexDirection: column);
+            input[type="password"] {
+                width: 100%;
+                outline: none;
+                border: none;
+                font-size: 14px;
+                border-bottom: 1px solid $inputbottomline;
+            }
+            input[type=password]::-ms-reveal,
+            input[type=password]::-ms-clear {
+                display: none;
+            }
+            input[type="text"] {
+                width: 100%;
+                outline: none;
+                border: none;
+                border-bottom: 1px solid $inputbottomline;
+            }
+            // input[type="text"]::placeholder{
+            //     font-size: 16px;
+            // }
+            // input[type="text"]::-webkit-input-placeholder{
+            //     font-size: 14px;
+            // }
+            .label {
+                margin-left: auto;
+                font-size: 14px;
+                color: $accentcolor;
+                @include cursorPointer();
+            }
+            .input-password {
+                @include flex(space-between);
+                img {
+                    border-bottom: 1px solid $inputbottomline;
+                    @include cursorPointer();
+                }
+            }
+        }
+        .rememberMe {
+            @include flex($justifyContent: normal, $alignItems: center);
+            input[type="checkbox"] {
+                width: 18px;
+                height: 24px;
+                accent-color: $accentcolor;
+                @include cursorPointer();
+            }
+            .label {
+                margin-left: 5px;
+                font-size: 16px;
+                color: $textcolor;
+            }
+        }
+        .login-button-container {
+            @include flex(center, center);
+            .login-button {
+                @include cursorPointer();
+                width: 216px;
+                margin-top: 34px;
+                margin-bottom: 24px;
+                border: none;
+                box-shadow: $buttonshadow;
+                height: 40px;
+                background-color: $buttonbgcolor;
+            }
+        }
+        .create-account {
+            @include flex(center, center, column);
+            .label {
+                font-size: 12px;
+                margin-bottom: 4px;
+            }
+            a {
+                text-decoration: none;
+                color: $accentcolor;
+                font-size: 14px;
+            }
+        }
+    }
+    .contact-div {
+        @include flex($flexDirection: column);
+        .contact {
+            @include flex(center, end);
+            margin-top: 40px;
+            // bottom: 40px;
+            a {
+                text-decoration: none;
+                color: $accentcolor;
+            }
+            .pipe {
+                margin-left: 8px;
+                margin-right: 8px;
+                color: $inputbottomline;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:500px) {
+    .login-container {
+        .login-form {
+            padding: 20px 16px;
+            width: 311px;
+        }
+    }
+}

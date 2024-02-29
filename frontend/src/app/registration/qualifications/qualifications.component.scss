@@ -1,0 +1,315 @@
+@import '../../../scss/functions';
+@import '../../../scss/variable';
+.educational-qualification-div {
+    margin: 0px 24px 24px 24px;
+    // margin-bottom: 24px;
+    .dropdown {
+        @include flex($justifyContent: space-between, $alignItems: center);
+        background-color: $qualificationTitleColor;
+        box-shadow: 0px 4px 6px $qualificationboxShadow;
+        .education-title {
+            padding-left: 16px;
+        }
+        .dropdown_img_container {
+            border-left: 1px solid rgba(0, 0, 0, 0.25);
+            height: 56px;
+            width: 32px;
+            @include cursorPointer();
+            @include flex($justifyContent: center, $alignItems: center);
+            img {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+    }
+    .educational-info {
+        background-color: $white;
+        margin-top: 0px;
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-bottom: 1px;
+        .educational-steps {
+            padding-top: 24px;
+            .data-div-single {
+                margin-bottom: 40px;
+                .label {
+                    color: $labelcolor;
+                    font-size: 12px;
+                    line-height: 16px;
+                }
+                .text {
+                    width: 180px;
+                    text-align: left;
+                    font-size: 16px;
+                    color: $textcolor;
+                    border: none;
+                    border-bottom: 1px solid $textcolor;
+                    margin-top: 12px;
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+            .data-div-double {
+                @include flex($justifyContent: normal, $alignItems: center);
+                gap: 24px;
+                .data-div-single {
+                    flex: 1;
+                    .text {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.Professional_qualification_type {
+    .dropdown {
+        @include flex($justifyContent: space-between, $alignItems: center);
+        background-color: $qualificationTitleColor;
+        box-shadow: 0px 4px 6px $qualificationboxShadow;
+        margin: 0px 24px 24px 24px;
+        margin-bottom: 0px;
+        .proffesional-qualification-title {
+            padding-left: 16px;
+        }
+        .dropdown_img_container {
+            border-left: 1px solid rgba(0, 0, 0, 0.25);
+            height: 56px;
+            width: 32px;
+            @include flex($justifyContent: center, $alignItems: center);
+            img {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+    }
+}
+
+.professional-qualification-type {
+    margin-left: 24px;
+    margin-right: 24px;
+    background-color: $white;
+    padding: 24px;
+    .label {
+        color: $labelcolor;
+        font-size: 12px;
+        line-height: 16px;
+    }
+    .applicant-type-container {
+        @include flex();
+        input[type="radio"] {
+            width: 20px;
+            height: 24px;
+            accent-color: $accentcolor;
+            margin-right: 8px;
+        }
+        .label-radio {
+            margin-right: 24px;
+            font-size: 16px;
+            line-height: 20px;
+        }
+    }
+}
+
+.experience-info {
+    margin: 24px;
+    background-color: $white;
+    padding: 24px;
+    margin-bottom: 24px;
+    .data-div-single {
+        margin-bottom: 40px;
+        .label {
+            color: $labelcolor;
+            font-size: 12px;
+        }
+        .text {
+            width: 180px;
+            text-align: left;
+            font-size: 16px;
+            color: $textcolor;
+            border: none;
+            border-bottom: 1px solid $textcolor;
+            margin-top: 12px;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+    .data-div-tech-expert {
+        margin-bottom: 24px;
+        .label {
+            color: $labelcolor;
+            font-size: 12px;
+        }
+        .role-options {
+            @include flex($alignItems: center);
+            margin-top: 16px;
+            .roles-checkbox {
+                width: 18px;
+                height: 18px;
+                margin-right: 8px;
+                accent-color: $accentcolor;
+            }
+            .role-label {
+                font-size: 16px;
+            }
+        }
+        .data-div-single {
+            label {
+                margin-top: 18px;
+            }
+        }
+    }
+    .data-div-tech-familiar {
+        margin-bottom: 24px;
+        .label {
+            color: $labelcolor;
+            font-size: 12px;
+        }
+        .role-options {
+            @include flex($alignItems: center);
+            margin-top: 16px;
+            .roles-checkbox {
+                width: 18px;
+                height: 18px;
+                margin-right: 8px;
+                accent-color: $accentcolor;
+            }
+            .role-label {
+                font-size: 16px;
+            }
+        }
+        .data-div-single {
+            label {
+                margin-top: 18px;
+            }
+        }
+    }
+    .data-div-radio {
+        margin-bottom: 16px;
+        .label {
+            color: $labelcolor;
+            font-size: 12px;
+        }
+        .radio-container {
+            @include flex();
+            input[type="radio"] {
+                width: 20px;
+                height: 24px;
+                accent-color: $accentcolor;
+                margin-right: 8px;
+            }
+            .label-radio {
+                margin-right: 24px;
+                font-size: 16px;
+                line-height: 20px;
+            }
+        }
+    }
+    .data-div-double {
+        @include flex($justifyContent: normal, $alignItems: center);
+        gap: 24px;
+        .data-div-single {
+            flex: 1;
+            .text {
+                width: 100%;
+            }
+            input[type="date"] {
+                width: 100%;
+                border: none;
+                border-bottom: 1px solid $textcolor;
+            }
+            select {
+                border: none;
+                border-bottom: 1px solid $textcolor;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.fresher-info {
+    background-color: $white;
+    margin: 24px;
+    padding: 24px;
+    .data-div-single {
+        margin-bottom: 24px;
+        .label {
+            color: $labelcolor;
+            font-size: 12px;
+            line-height: 16px;
+        }
+        .role-options {
+            @include flex($alignItems: center);
+            margin-top: 16px;
+            .roles-checkbox {
+                width: 18px;
+                height: 18px;
+                margin-right: 8px;
+                accent-color: $accentcolor;
+            }
+            .role-label {
+                font-size: 16px;
+            }
+        }
+        .text {
+            width: 39%;
+            text-align: left;
+            font-size: 16px;
+            color: $textcolor;
+            border: none;
+            border-bottom: 1px solid $textcolor;
+            margin-top: 12px;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+    .data-div-radio {
+        margin-bottom: 16px;
+        .label {
+            color: $labelcolor;
+            font-size: 12px;
+        }
+        .radio-container {
+            @include flex();
+            input[type="radio"] {
+                width: 20px;
+                height: 24px;
+                accent-color: $accentcolor;
+                margin-right: 8px;
+            }
+            .label-radio {
+                margin-right: 24px;
+                font-size: 16px;
+                line-height: 20px;
+            }
+        }
+    }
+}
+
+.step_moving_btn {
+    margin-top: 18px;
+    @include flex($justifyContent: center, $alignItems: center);
+    gap: 24px;
+    .next-button {
+        background-color: $buttonbgcolor;
+        color: $buttoncolor;
+        font-size: 14px;
+        padding: 5px 27px;
+        border: none;
+        border-radius: 2px;
+        box-shadow: $buttonshadow;
+        margin-bottom: 30px;
+        &:hover {
+            @include cursorPointer();
+            transform: translateY(-0.2rem);
+        }
+    }
+}
+
+.rotate180 {
+    transform: rotate(180deg);
+}

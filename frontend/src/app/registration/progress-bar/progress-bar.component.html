@@ -1,0 +1,47 @@
+<!-- @if(!isGoToPassword){ -->
+<div class="reg-header">
+    <img [routerLink]="['/']" src="../../../assets/svgs/back.svg" alt="back_arrow">
+    <div class="reg-title">Create an account</div>
+    <button [routerLink]="['/']" class="reg-button cancel-button active">CANCEL</button>
+    <button class="reg-button create-button" [ngClass]="{disabled: isDisabled}" (click)="createAccountClicked()">CREATE</button>
+</div>
+
+<div class="reg-progress-bar">
+    <div class="progress-div">
+        <span [ngClass]="{progress_circle: true,already_next_step: isAlreadyNextStep(1)}">
+            @if(stepCount > 1){
+                <img class="edit-img" src="../../../assets/icons/edit_black.png" alt="">
+            } @else { 1 }
+            </span>
+        <span class="progress-label">Personal Information</span>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-div">
+        <span [ngClass]="{progress_circle: true,already_next_step: isAlreadyNextStep(2)}">
+            @if(stepCount > 2){
+                <img class="edit-img" src="../../../assets/icons/edit_black.png" alt="">
+            } @else { 2 }
+            </span>
+        <span class="progress-label">Qualifications</span>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-div">
+        <span [ngClass]="{progress_circle: true,already_next_step: isAlreadyNextStep(3)}">
+            @if(stepCount > 3){
+                <img class="edit-img" src="../../../assets/icons/edit_black.png" alt="">
+            } @else { 3 }
+            </span>
+        <span class="progress-label">Review and Proceed</span>
+    </div>
+</div>
+
+@if(stepCount===1){
+<app-personal-info (userDataUpdated)="updateUserData($event)" [roles]="registrationData.role" [userInfo]="userInfo" (personalInformationSubmited)="setPersonalInformation($event)"></app-personal-info>
+} @else if(stepCount===2){
+<app-qualifications (userDataUpdated)="updateUserData($event)" [techs]="registrationData.tech" [userInfo]="userInfo" (qualificationsSubmited)="setQualificationsInformation($event)" [registrationData]="registrationData"></app-qualifications>
+}@else if(stepCount===3){
+<app-review-proceed [userInfo]="userInfo" [registrationData]="registrationData" (reviewPricessSubmited)="reviewPricessSubmited($event)"></app-review-proceed>
+}
+<!-- } @else{
+<app-create-password [userInfo]="userInfo"></app-create-password>
+} -->

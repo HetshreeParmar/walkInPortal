@@ -1,0 +1,150 @@
+@import '../../../scss/functions';
+@import '../../../scss/variable';
+.main-header {
+    margin: 24px;
+    @include flex($justifyContent: space-between);
+    .component-title {
+        font-size: 16px;
+    }
+    .edit-img-container {
+        @include flex();
+        @include cursorPointer();
+        color: $accentcolor;
+        img {
+            height: 18px;
+            width: 18px;
+            margin-right: 9px;
+        }
+    }
+}
+
+.personal-info-div {
+    background-color: $white;
+    margin: 24px;
+    padding: 24px;
+    gap: 40px;
+    position: relative;
+    .single-line {
+        .label {
+            color: $labelcolor;
+            font-size: 12px;
+        }
+        .value {
+            padding-top: 12px;
+            padding-bottom: 40px;
+        }
+        .preferred-jobRoles {
+            margin-top: 12px;
+            .value-jobRole {
+                margin-bottom: 16px;
+            }
+        }
+    }
+    .sendmeupdates-div {
+        @include flex();
+        input[type="checkbox"] {
+            margin-right: 8px;
+            width: 18px;
+            height: 24px;
+            accent-color: $textcolor;
+        }
+        .label {
+            font-size: 14px;
+            color: $textcolor;
+        }
+    }
+    .photo-upload {
+        float: right;
+        margin-top: 0;
+        img {
+            width: 112px;
+            height: 112px;
+            border-radius: 50%;
+            object-fit: cover;
+            overflow: hidden;
+        }
+    }
+    .upload-resume-div {
+        @include flex();
+        margin-bottom: 40px;
+        .upload-label {
+            margin-right: 8px;
+        }
+    }
+}
+
+.qualification-info-div {
+    margin: 24px;
+    .dropdown {
+        height: 56px;
+        @include flex($justifyContent: space-between, $alignItems: center);
+        background-color: $qualificationTitleColor;
+        box-shadow: 0px 4px 6px $qualificationboxShadow;
+        .education-title {
+            padding-left: 16px;
+        }
+    }
+    .education-info {
+        padding: 24px;
+        background-color: $white;
+        .single-line {
+            .label {
+                color: $labelcolor;
+                font-size: 12px;
+            }
+            .value {
+                padding-top: 12px;
+                padding-bottom: 40px;
+            }
+            .value-other {
+                padding-top: 12px;
+                padding-bottom: 16px;
+            }
+            .expertise-tech {
+                margin-top: 12px;
+                .expertise-tech-value {
+                    margin-bottom: 16px;
+                }
+            }
+            .familier-tech {
+                margin-top: 12px;
+                .familier-tech-value {
+                    margin-bottom: 16px;
+                }
+            }
+        }
+        .followed {
+            margin-bottom: 16px;
+        }
+        .double-line {
+            @include flex($justifyContent: normal, $alignItems: center);
+            gap: 24px;
+            .single-line {
+                flex: 1;
+                .text {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.step_moving_button {
+    @include flex();
+    .prev-button {
+        background-color: $buttonbgcolor;
+        color: $buttoncolor;
+        font-size: 14px;
+        padding: 5px 27px;
+        border: none;
+        border-radius: 2px;
+        box-shadow: $buttonshadow;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        &:hover {
+            @include cursorPointer();
+            transform: translateY(-0.2rem);
+        }
+    }
+}

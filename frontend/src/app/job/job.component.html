@@ -1,0 +1,160 @@
+<!-- @if(!isAppliedInJob){  -->
+@if(job){
+<div class="container">
+    <div class="go-up-component" (click)="goUpClicked()">
+        <img src="../../assets/icons/arrow_upward_black_24dp.svg" alt="" />
+    </div>
+    <div class="list-container">
+        <div class="job-container">
+            <div class="apply-job">
+                <button [disabled]="isApplyDisabled()" (click)="applyIntoJob()" class="apply-job-button">APPLY</button>
+            </div>
+            <div class="job-title">{{job.jobName | titlecase}}</div>
+            <div class="date-time-container">
+                <div class="date-time-title">Date & Time :</div>
+                <div class="date-time-value">
+                    <div class="">{{formatdate(job.fromTime)}} to {{formatdate(job.toTime)}}</div>
+                    <div class="splitter"> | </div>
+                    <div class="location">
+                        <img src="../../assets/icons/location_on_grey_24dp.svg" alt="location icon">
+                        <div class="location-title">{{job.location.locationName}}</div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="job-role-title">Job Roles:</div>
+            <div class="job-role-container">
+                @for(jr of job.jobRoles; track $index){
+                <div class="job">
+                    <img src="../../assets/icons/Instructional Designer.svg" alt="Instructional Designer Icon">
+                    <div class="role-title">{{jr.role.roleName}}</div>
+                </div>
+                <!-- @if($index !== jr.length){
+                    <div class="job-splitter mobile-screen"> </div>
+                    }  -->
+                }
+            </div>
+            @if(job.special_message){
+            <div class="extra-roles-container">
+                <div class="extra-role">{{job.special_message}}</div>
+            </div>
+            }
+        </div>
+        <div class="dropdown">
+            <div class="pre-requisites-process-title">Pre-requisites & Application Process</div>
+            <div class="dropdown_img_container" (click)="toogleRequisitesProcess()">
+                <img [ngClass]="{rotate180: isPreRequisitesApplicationClose}" src="../../../assets/icons/expand_less_black_24dp.svg" alt="">
+            </div>
+        </div>
+        <div class="pre-requisites-process-container" [hidden]="isPreRequisitesApplicationClose">
+            <div class="job-info-container">
+                @for(req of job.jobDescs; track $index){
+                <div class="job-info">
+                    <div class="job-header">{{req.descTitle | titlecase}}</div>
+                    <div class="job-value">
+                        @for(desc of req.description.split("- "); track $index){ @if(desc.length !== 0){
+                        <div class="instruction">- {{desc}}</div>
+                        } }
+                    </div>
+                    <hr>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="time-slot-container">
+        <div class="time-slot-title">Time Slots & Preferences</div>
+        <div class="select-time">Select a Time slot: </div>
+        <div class="radio-container">
+            @for(ts of job.jobSlots; track $index){
+            <div class="radio-button">
+                <input (change)="toggleSlot(ts.slot.slotId)" type="radio" name="timeSlotsPref" [value]="ts.slot.fromTime" [(ngModel)]="applyInJob.timeSlot">
+                <label for="timeSlotsPref" class="radio-label">{{ ts.slot.fromTime }} to {{ts.slot.toTime}}</label>
+            </div>
+            }
+        </div>
+        <hr/>
+        <div class="select-preference">Select Your Preference: </div>
+        <div class="checkbox-container">
+            @for(job_role of job.jobRoles; track $index){
+            <div class="checkbox-option">
+                <input (change)="toggleJobRole(job_role.role.roleId)" type="checkbox" [id]="'checkbox_' + job_role" [value]="job_role" [(ngModel)]="applyInJob.preference[$index]" />
+                <label [for]="'checkbox_' + job_role" class="checkbox-label">{{ job_role.role.roleName }}</label>
+            </div>
+            }
+        </div>
+        <hr>
+        <label for="resume-input" (change)="uploadResume($event)" class="data upload-resume-div">
+            <img src="../../../assets/svgs/Upload_24dp.svg" alt="upload_resume" class="upload-resume">
+            <input type="file" id="resume-input" accept="application/pdf" class="resume-input">
+            <div class="upload-label">UPLOAD UPDATE RESUME</div>
+            <input #filename class="file-name" placeholder="{{fileName}}" disabled>
+        </label>
+    </div>
+    @for(job_role of job.jobRoles; track $index){
+    <div class="single-job-container">
+        <div class="dropdown">
+            <div class="job-roles-title">{{ job_role.role.roleName }}</div>
+            <div class="dropdown_img_container" (click)="clickClose($index)">
+                <img [ngClass]="{rotate180: jobRolesDrop[$index]}" src="../../../assets/icons/expand_less_black_24dp.svg" alt="">
+            </div>
+        </div>
+        <div class="job-info-container" [hidden]="jobRolesDrop[$index]">
+            <div class="job-info">
+                <div class="job-header">Gross Compensation Package: </div>
+                <div class="job-value">
+                    <div class="instruction">{{job_role.package}}</div>
+                </div>
+                <hr> @for(js of job_role.jobRoleDescs;track $index){
+                <div class="job-header">{{js.descTitle | titlecase}}</div>
+                <div class="job-value">
+                    @for(desc of js.description.split("- "); track $index){
+                    <div class="instruction">- {{desc}}</div>
+                    }
+                </div>
+                <hr> }
+            </div>
+        </div>
+    </div>
+    <!-- <div class="single-job-container">
+            <div class="dropdown">
+                <div class="job-roles-title">{{ job_role }}</div>
+                <div class="dropdown_img_container" (click)="clickClose($index)">
+                    <img [ngClass]="{rotate180: jobRolesDrop[$index]}" src="../../../assets/icons/expand_less_black_24dp.svg" alt="">
+                </div>
+            </div>
+            <div class="job-info-container" [hidden]="jobRolesDrop[$index]">
+                <div class="job-info">
+                    <div class="job-header">Gross Compensation Package: </div>
+                    <div class="job-value">
+                        <div class="instruction">Rs. {{job.packages[$index].toLocaleString("en-IN")}} lpa</div>
+                    </div>
+                </div>
+                <hr>
+                <div class="job-info">
+                    <div class="job-header">Role Description: </div>
+                    <div class="job-value">
+                        @for(desc of job.roleDescriptions[$index].split("- "); track $index){ @if(desc.length !== 0){
+                        <div class="instruction">- {{ desc }}</div>
+                        } }
+                    </div>
+                </div>
+                <hr>
+                <div class="job-info">
+                    <div class="job-header">Requirements: </div>
+                    <div class="job-value">
+                        @for(req of job.requirements[$index].split("- "); track $index){ @if(req.length !== 0){
+                        <div class="instruction">- {{ req }}</div>
+                        } }
+                    </div>
+                </div>
+            </div>
+    
+        </div> -->
+    }
+</div>
+}
+<!-- } -->
+<!-- @else{
+<app-job-application></app-job-application>
+} -->

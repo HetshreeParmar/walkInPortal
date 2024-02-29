@@ -1,0 +1,124 @@
+@import '../../scss/functions';
+@import '../../scss/variable';
+.all-jobs-container {
+    padding: 35px 24px 41px 24px;
+    // bottom: 41px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 24px;
+    .job-container {
+        background-color: $white;
+        padding: 16px;
+        box-shadow: 0px 4px 6px $boxshadow;
+        .job-title {
+            font-size: 18px;
+            color: $accentcolor;
+            padding-bottom: 16px;
+        }
+        .job-expires {
+            position: static;
+            height: 18px;
+            margin-top: -2.3%;
+            text-align: center;
+            padding: 2px 8px;
+            background-color: $expiresbgColor;
+            color: $expiresColor;
+            font-size: 12px;
+            border-radius: 2px;
+            float: right;
+        }
+        .date-time-container {
+            .date-time-title {
+                margin-bottom: 8px;
+                color: $labelcolor;
+                font-size: 12px;
+            }
+            .date-time-value {
+                @include flex();
+                font-size: 14px;
+                color: $textcolor;
+                gap: 16px;
+                .splitter {
+                    color: $labelcolor;
+                    opacity: 0.25;
+                }
+                .location {
+                    @include flex();
+                    gap: 4px;
+                    color: $labelcolor;
+                    font-size: 12px;
+                    img {
+                        height: 16px;
+                        width: 16px;
+                    }
+                }
+            }
+        }
+        hr {
+            color: $labelcolor;
+            opacity: 0.25;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .job-role-title {
+            color: $labelcolor;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        .job-role-container {
+            @include flex();
+            gap: 8px;
+            .job {
+                @include flex($alignItems: center);
+                gap: 8px;
+                img {
+                    height: 16px;
+                    width: 16px;
+                    border: 1px solid $textcolor;
+                    border-radius: 50%;
+                    padding: 4px;
+                }
+                .role-title {
+                    font-size: 14px;
+                }
+            }
+        }
+        .extra-roles-container {
+            @include flex();
+            margin-top: 19px;
+            .extra-role {
+                background-color: $extraRolebgColor;
+                border-radius: 9px;
+                font-size: 10px;
+                text-align: center;
+                height: 18px;
+                width: 218px;
+            }
+        }
+        .view-more-button {
+            @include cursorPointer();
+            @include flex(center, center);
+            margin: 27px auto 0px auto;
+            outline: none;
+            padding: 5px 16px;
+            background-color: $buttonbgcolor;
+            border: none;
+            color: $backgroundColor;
+            border-radius: 2px;
+            box-shadow: $buttonshadow;
+        }
+    }
+}
+
+@media screen and (max-width: 376px) {
+    .all-jobs-container {
+        .job-container {
+            .job-role-container {
+                @include flex(center, normal, column);
+            }
+            .job-expires {
+                margin-top: -8%;
+            }
+        }
+    }
+}

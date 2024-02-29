@@ -1,0 +1,68 @@
+<form class="personal-info-form flex">
+    <div class="personal-info-div">
+        <div class="personal-info">
+            <div class="data">
+                <label for="firstName" class="label">FirstName*</label>
+                <br/>
+                <input #firstName name="firstName" id="firstName" [(ngModel)]="userInfo.firstName" type="text" class="text" placeholder="Enter First Name" (change)="updateUserData()" required>
+            </div>
+            <div class="data">
+                <label for="lastName" class="label">LastName*</label>
+                <br/>
+                <input #lastName name="lastName" id="lastName" [(ngModel)]="userInfo.lastName" type="text" class="text" placeholder="Enter Last Name" (change)="updateUserData()" required>
+            </div>
+            <div class="data">
+                <label for="email" class="label">Email*</label>
+                <br/>
+                <input #email name="email" id="email" type="text" [(ngModel)]="userInfo.email" class="text" placeholder="Enter Email" (change)="updateUserData()" required>
+            </div>
+            <div class="data">
+                <label for="phoneNumber" class="label">Phone Number*</label>
+                <br/>
+                <span>+</span>
+                <input #countryCode type="number" name="country_code" id="country_code" [(ngModel)]="userInfo.countrycode" class="country_code" (change)="updateUserData()">
+                <input #phoneNumber id="phoneNumber" name="phoneNo" [(ngModel)]="userInfo.phoneNo" type="number" class="phone-input" minlength="10" (change)="updateUserData()" required>
+            </div>
+            <label for="resume-input" (change)="uploadResume($event)" class="data upload-resume-div">
+                <img src="../../../assets/svgs/Upload_24dp.svg" alt="upload_resume" class="upload-resume">
+                <input type="file" id="resume-input" accept="application/pdf" class="resume-input">
+                <div class="upload-label">Upload Resume</div>
+                <input class="file-name" placeholder="{{userInfo.resumeFileName}}" disabled>
+            </label>
+            <div class="data">
+                <label for="portfolio_url" class="label">Enter Prortfolio URL (if any)</label>
+                <input type="text" name="portfolio_url" [(ngModel)]="userInfo.portfolioUrl" class="text" placeholder="Enter URL" (change)="updateUserData()">
+            </div>
+            <div class="data">
+                <label for="role" class="label">Prefereed Job Roles*</label> @for(role of roles; track $index){
+                <div class="role-options">
+                    <input (change)="toggleJobRole(role)" #preferredJobRolescheckbox [id]="role.roleName" type="checkbox" [name]="role.roleName" class="roles-checkbox" [checked]="userInfo.rolesId.includes(role.roleId)" />
+                    <label [for]="role.roleName" class="role-label">{{ role.roleName | titlecase}}</label
+                      > 
+                    </div>
+                    }
+            </div> 
+            <div class="data">
+                <label for="referral" class="label">If You Are Registering Via A Refferal, Please Mention Full Name Of The Employee Who Reffered You</label>
+                    <input type="text" class="text" name="referral" [(ngModel)]="userInfo.referalEmpName" (change)="updateUserData()">
+                </div>
+                <div class="sendmeupdates-div">
+                    <input name="sendmeupdates" [(ngModel)]="userInfo.sendMeUpdate" type="checkbox" id="sendmeupdates" class="update-checkbox" (change)="updateUserData()">
+                    <label for="sendmeupdates" class="updates-label">Send me job related updates via mail</label>
+                </div>
+            </div>
+            <div class="photo-upload">
+                <div class="flex-div">
+                    <!-- <img src="../../../assets/images/default-profile-photo.png" alt="default-profile-photo" class="profile-photo"> -->
+                    <img [src]=profilePhotoSrc alt="default-profile-photo" class="profile-photo">
+                    <label for="photo-input" class="photo-input-label" (change)="uploadProfilePhoto($event)">
+                    <input (change)="updateUserData()" type="file" id="photo-input" accept="image/jpeg, image/jpg, image/png" class="photo-input">
+                    <div class="upload-label">UPLOAD DISPLAY PICTURE</div>
+                </label>
+                    <div class="input-desc">max. image size: 5MB</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="next-button" (click)="onSubmit()">NEXT</button>
+</form>

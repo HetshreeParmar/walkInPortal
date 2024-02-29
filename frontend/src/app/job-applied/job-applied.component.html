@@ -1,0 +1,41 @@
+<div class="main-container">
+    <div class="hall-ticket-component">
+        <img src="../../assets/icons/correct.png" alt="">
+        <div class="congratulations-title">
+            Congratulations ! You have successfully applied for the walk-in opportunity
+        </div>
+        <hr/>
+        <div class="date-time-component">
+            <div class="date-time-title">Data & Time of Walk-In: </div>
+            <div class="date-time-value">
+                <div class="date">{{formatdate(application.job.date)}}</div>
+                <div class="time">{{convertTo12HourFormat(application.slot.fromTime)}} to {{convertTo12HourFormat(application.slot.toTime)}}</div>
+            </div>
+        </div>
+        <hr/>
+        <div class="venue-component">
+            <div class="venue-title">Venue of Walk-In: </div>
+            <div class="venue-value">
+                {{application.job.venue}}
+                <!-- <div class="address name">{{job?.address?.name}}</div>
+                <div class="address line1">{{job?.address?.addressLine1}}</div>
+                <div class="address area">{{job?.address?.area}}</div>
+                <div class="address city state">{{job?.address?.city}} - {{job?.address?.pincode}}</div>
+                <div class="address phone">+{{job?.address?.phone}}</div> -->
+            </div>
+        </div>
+        <hr/>
+        <div class="things-to-rem-component">
+            <div class="things-to-rem-title">THINGS TO REMEMBER: </div>
+            <div class="things-to-rem-value">
+                @for(rem of application.job.thingsToRem.split("- "); track $index){ @if(rem.length !== 0){
+                <div class="instruction">- {{rem}}</div>
+                } }
+            </div>
+        </div>
+        <hr/>
+        <div class="download-button">
+            <button class="download-hall-ticket">DOWNLOAD HALL TICKET</button>
+        </div>
+    </div>
+</div>
